@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>お問い合わせ | 株式会社エンジェルプランニング</title>
+  <meta name="description" content="株式会社エンジェルプランニングへのお問い合わせはこちら。在庫確認・見積依頼・取引条件のご相談を承ります。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal.is-open {
+      display: flex;
+    }
+    .modal__box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .modal__icon {
+      width: 56px;
+      height: 56px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .modal__icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: #16a34a;
+    }
+    .modal__title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.6rem;
+    }
+    .modal__desc {
+      font-size: 0.87rem;
+      color: #6b7280;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .modal__note {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo__main">株式会社エンジェルプランニング</span>
+        <span class="site-logo__sub">Angel Planning Co., Ltd.</span>
+      </a>
+      <nav class="site-nav">
+        <ul class="site-nav__list">
+          <li><a href="index.html" class="site-nav__link">トップ</a></li>
+          <li><a href="about.html" class="site-nav__link">会社概要</a></li>
+          <li><a href="products.html" class="site-nav__link">製品紹介</a></li>
+          <li><a href="contact.html" class="site-nav__link site-nav__link--cta">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+    <nav class="mobile-nav">
+      <ul class="mobile-nav__list">
+        <li><a href="index.html" class="mobile-nav__link">トップ</a></li>
+        <li><a href="about.html" class="mobile-nav__link">会社概要</a></li>
+        <li><a href="products.html" class="mobile-nav__link">製品紹介</a></li>
+        <li><a href="contact.html" class="mobile-nav__link">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="page-hero__label">Contact</p>
+        <h1 class="page-hero__title">お問い合わせ</h1>
+        <p class="page-hero__desc">在庫確認・見積依頼・取引条件のご相談など、お気軽にご連絡ください</p>
+      </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <span><a href="index.html">トップ</a></span>
+        <span>お問い合わせ</span>
+      </nav>
+    </div>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- 左カラム: 連絡先情報 -->
+          <aside class="fade-in">
+            <h2 class="contact-info__title">お問い合わせ先</h2>
+
+            <div class="contact-info__item">
+              <span class="contact-info__label">会社名</span>
+              <span class="contact-info__value">株式会社エンジェルプランニング</span>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__label">電話番号</span>
+              <span class="contact-info__value">0XX-XXXX-XXXX</span>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__label">FAX</span>
+              <span class="contact-info__value">0XX-XXXX-XXXX</span>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__label">メール</span>
+              <span class="contact-info__value">info@angel-planning.example.com</span>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__label">受付時間</span>
+              <span class="contact-info__value">
+                平日 9:00〜18:00<br>
+                ※土日祝・年末年始を除く
+              </span>
+            </div>
+
+            <div class="contact-note">
+              <strong>お取引について：</strong><br>
+              当社は法人のお客様とのお取引のみ承っております。個人の方からのご依頼はお受けできませんのでご了承ください。
+            </div>
+          </aside>
+
+          <!-- 右カラム: フォーム -->
+          <div class="fade-in">
+            <!-- デモ注記 -->
+            <div style="background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 0.9rem 1.1rem; margin-bottom: 1.5rem; font-size: 0.82rem; color: #92400e;">
+              <strong>※ デモ表示：</strong>
+              このフォームはバリデーション確認用のデモです。送信ボタンを押してもメールは送信されません。
+            </div>
+
+            <form class="contact-form" id="contactForm" novalidate>
+
+              <div class="form-group">
+                <label for="company">
+                  会社名 <span class="required">必須</span>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="company"
+                  name="company"
+                  placeholder="例：株式会社○○自動車"
+                  autocomplete="organization"
+                >
+                <p class="form-error" id="companyError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="name">
+                  担当者名 <span class="required">必須</span>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="例：山田 太郎"
+                  autocomplete="name"
+                >
+                <p class="form-error" id="nameError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="tel">
+                  電話番号 <span class="required">必須</span>
+                </label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="tel"
+                  name="tel"
+                  placeholder="例：03-XXXX-XXXX"
+                  autocomplete="tel"
+                >
+                <p class="form-error" id="telError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="email">
+                  メールアドレス <span class="required">必須</span>
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="例：yamada@example.com"
+                  autocomplete="email"
+                >
+                <p class="form-error" id="emailError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">お問い合わせ種別</label>
+                <select class="form-control" id="subject" name="subject">
+                  <option value="">選択してください</option>
+                  <option value="stock">在庫確認</option>
+                  <option value="quote">見積依頼</option>
+                  <option value="trade">取引条件のご相談</option>
+                  <option value="product">製品についてのご質問</option>
+                  <option value="other">その他</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">
+                  お問い合わせ内容 <span class="required">必須</span>
+                </label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  name="message"
+                  placeholder="型番・数量・納期など、詳細をご記入ください"
+                ></textarea>
+                <p class="form-error" id="messageError"></p>
+              </div>
+
+              <div class="form-submit">
+                <button type="submit" class="btn btn--primary">送信する</button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <p class="footer-brand__name">株式会社エンジェルプランニング</p>
+          <p class="footer-brand__desc">
+            自動車部品の専門商社として、<br>
+            高品質・安定供給を通じてお客様のビジネスを支えます。
+          </p>
+        </div>
+        <div class="footer-nav">
+          <p class="footer-nav__title">Navigation</p>
+          <ul class="footer-nav__list">
+            <li><a href="index.html" class="footer-nav__link">トップページ</a></li>
+            <li><a href="about.html" class="footer-nav__link">会社概要・事業案内</a></li>
+            <li><a href="products.html" class="footer-nav__link">製品紹介</a></li>
+            <li><a href="contact.html" class="footer-nav__link">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 株式会社エンジェルプランニング. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== 送信完了モーダル ===== -->
+  <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__box">
+      <div class="modal__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      </div>
+      <h2 class="modal__title" id="modalTitle">送信完了（デモ）</h2>
+      <p class="modal__desc">
+        お問い合わせいただきありがとうございます。<br>
+        本番では、担当者より1〜2営業日以内にご連絡いたします。
+      </p>
+      <button class="btn btn--primary" data-close-modal style="width: 100%;">閉じる</button>
+      <p class="modal__note">※ これはデモのため、実際のメール送信は行われていません</p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
