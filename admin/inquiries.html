@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>お問い合わせ管理 | 管理画面</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="admin-sidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+      <span class="sidebar-brand__main">管理画面</span>
+      <span class="sidebar-brand__sub">エンジェルプランニング</span>
+    </a>
+    <nav class="sidebar-nav">
+      <span class="sidebar-nav__label">メニュー</span>
+      <a href="dashboard.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg>
+        ダッシュボード
+      </a>
+      <a href="products.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
+        製品管理
+      </a>
+      <a href="inquiries.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+        お問い合わせ
+        <span class="sidebar-badge" id="inquiryBadge"></span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="sidebar-back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        サイトに戻る
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <span class="topbar-title">お問い合わせ管理</span>
+      <div class="topbar-user">
+        <span class="topbar-user__name">管理者</span>
+        <button class="topbar-logout" id="logoutBtn">ログアウト</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <div class="page-header fade-in">
+        <h1 class="page-header__title">お問い合わせ一覧 <span id="inquiryCount"></span></h1>
+      </div>
+
+      <!-- フィルター -->
+      <div class="filter-bar fade-in" id="filterBar">
+        <button class="filter-btn is-active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="open">未対応</button>
+        <button class="filter-btn" data-filter="in-progress">対応中</button>
+        <button class="filter-btn" data-filter="done">完了</button>
+      </div>
+
+      <!-- アコーディオンリスト -->
+      <div class="card fade-in">
+        <div class="inquiry-list" id="inquiryList"></div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+
+</div><!-- /admin-layout -->
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin-ui.js"></script>
+<script>
+  AdminAuth.guard();
+  AdminData.init();
+  AdminUI.init();
+
+  var STATUS_LABEL = { open: '未対応', 'in-progress': '対応中', done: '完了' };
+  var STATUS_CLASS = { open: 'status-badge--open', 'in-progress': 'status-badge--in-progress', done: 'status-badge--done' };
+  var currentFilter = 'all';
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatDate(isoStr) {
+    var d = new Date(isoStr);
+    return d.getFullYear() + '/' +
+      ('0' + (d.getMonth() + 1)).slice(-2) + '/' +
+      ('0' + d.getDate()).slice(-2);
+  }
+
+  function renderList() {
+    var inquiries = AdminData.getInquiries();
+    var sorted = inquiries.slice().sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+    var filtered = currentFilter === 'all'
+      ? sorted
+      : sorted.filter(function (q) { return q.status === currentFilter; });
+
+    document.getElementById('inquiryCount').textContent = '（' + filtered.length + '件）';
+
+    var list = document.getElementById('inquiryList');
+    list.innerHTML = '';
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="empty-state">該当するお問い合わせがありません</div>';
+      return;
+    }
+
+    filtered.forEach(function (inq) {
+      var item = document.createElement('div');
+      item.className = 'inquiry-item';
+      item.dataset.id = inq.id;
+
+      // ヘッダー
+      var header = document.createElement('div');
+      header.className = 'inquiry-header';
+      header.innerHTML =
+        '<span class="inquiry-date">' + formatDate(inq.date) + '</span>' +
+        '<span class="inquiry-subject">' + escHtml(inq.subject) + '</span>' +
+        '<span class="inquiry-company">' + escHtml(inq.company) + '</span>' +
+        '<span><span class="status-badge ' + (STATUS_CLASS[inq.status] || '') + '">' + (STATUS_LABEL[inq.status] || inq.status) + '</span></span>' +
+        '<svg class="inquiry-chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>';
+
+      // ボディ
+      var body = document.createElement('div');
+      body.className = 'inquiry-body';
+
+      // アクションボタン構築
+      var actionBtns = '';
+      if (inq.status === 'open') {
+        actionBtns += '<button class="btn btn--outline btn--sm js-status-btn" data-id="' + inq.id + '" data-status="in-progress">対応中にする</button>';
+      }
+      if (inq.status !== 'done') {
+        actionBtns += '<button class="btn btn--primary btn--sm js-status-btn" data-id="' + inq.id + '" data-status="done">完了にする</button>';
+      }
+      if (inq.status === 'done') {
+        actionBtns += '<button class="btn btn--ghost btn--sm js-status-btn" data-id="' + inq.id + '" data-status="open">未対応に戻す</button>';
+      }
+
+      body.innerHTML =
+        '<div class="inquiry-detail-grid">' +
+          '<div class="inquiry-detail-item"><span class="inquiry-detail-label">会社名:</span><span class="inquiry-detail-value">' + escHtml(inq.company) + '</span></div>' +
+          '<div class="inquiry-detail-item"><span class="inquiry-detail-label">担当者:</span><span class="inquiry-detail-value">' + escHtml(inq.name) + '</span></div>' +
+          '<div class="inquiry-detail-item"><span class="inquiry-detail-label">電話番号:</span><span class="inquiry-detail-value">' + escHtml(inq.tel) + '</span></div>' +
+          '<div class="inquiry-detail-item"><span class="inquiry-detail-label">メール:</span><span class="inquiry-detail-value">' + escHtml(inq.email) + '</span></div>' +
+        '</div>' +
+        '<p class="inquiry-message-label">お問い合わせ内容</p>' +
+        '<div class="inquiry-message-body">' + escHtml(inq.message) + '</div>' +
+        '<div class="inquiry-actions">' + actionBtns + '</div>';
+
+      item.appendChild(header);
+      item.appendChild(body);
+      list.appendChild(item);
+
+      // アコーディオン
+      header.addEventListener('click', function () {
+        var isOpen = body.classList.toggle('is-open');
+        header.classList.toggle('is-open', isOpen);
+      });
+
+      // 状況変更ボタン
+      body.querySelectorAll('.js-status-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var id = btn.dataset.id;
+          var newStatus = btn.dataset.status;
+          AdminData.updateInquiryStatus(id, newStatus);
+          AdminUI.showToast('状況を「' + STATUS_LABEL[newStatus] + '」に更新しました', 'success');
+          AdminUI.updateInquiryBadge();
+          renderList();
+        });
+      });
+    });
+  }
+
+  // フィルター
+  document.getElementById('filterBar').addEventListener('click', function (e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    currentFilter = btn.dataset.filter;
+    renderList();
+  });
+
+  renderList();
+</script>
+</body>
+</html>

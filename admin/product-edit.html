@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>製品編集 | 管理画面</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="admin-sidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+      <span class="sidebar-brand__main">管理画面</span>
+      <span class="sidebar-brand__sub">エンジェルプランニング</span>
+    </a>
+    <nav class="sidebar-nav">
+      <span class="sidebar-nav__label">メニュー</span>
+      <a href="dashboard.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg>
+        ダッシュボード
+      </a>
+      <a href="products.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
+        製品管理
+      </a>
+      <a href="inquiries.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+        お問い合わせ
+        <span class="sidebar-badge" id="inquiryBadge"></span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="sidebar-back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        サイトに戻る
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <span class="topbar-title" id="pageTitle">製品追加</span>
+      <div class="topbar-user">
+        <span class="topbar-user__name">管理者</span>
+        <button class="topbar-logout" id="logoutBtn">ログアウト</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <div class="page-header fade-in">
+        <h1 class="page-header__title" id="formTitle">製品を追加</h1>
+        <a href="products.html" class="btn btn--ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+          一覧に戻る
+        </a>
+      </div>
+
+      <div class="edit-layout fade-in">
+
+        <!-- フォーム -->
+        <div class="card">
+          <div class="card-body">
+            <form id="productForm" novalidate>
+
+              <div class="form-group">
+                <label for="fieldCode">型番 <span class="required">必須</span></label>
+                <input type="text" id="fieldCode" class="form-control" placeholder="例: AP-BRK-999">
+                <p class="form-error" id="fieldCodeError"></p>
+                <p class="form-hint">形式: AP-[カテゴリ大文字]-[数字3桁以上]</p>
+              </div>
+
+              <div class="form-group">
+                <label for="fieldName">製品名 <span class="required">必須</span></label>
+                <input type="text" id="fieldName" class="form-control" placeholder="例: ブレーキパッド（フロント用）">
+                <p class="form-error" id="fieldNameError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="fieldCategory">カテゴリ <span class="required">必須</span></label>
+                <select id="fieldCategory" class="form-control">
+                  <option value="">選択してください</option>
+                  <option value="brake">ブレーキ系</option>
+                  <option value="engine">エンジン系</option>
+                  <option value="suspension">足廻り</option>
+                  <option value="electrical">電装部品</option>
+                </select>
+                <p class="form-error" id="fieldCategoryError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="fieldMaker">メーカー <span class="required">必須</span></label>
+                <input type="text" id="fieldMaker" class="form-control" placeholder="例: DENSO">
+                <p class="form-error" id="fieldMakerError"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="fieldImage">画像ファイル名</label>
+                <input type="text" id="fieldImage" class="form-control" placeholder="例: brk-001.jpg">
+                <p class="form-hint">assets/images/ フォルダ内のファイル名を入力するとプレビューが表示されます</p>
+              </div>
+
+              <div class="form-group">
+                <label for="fieldDescription">製品説明</label>
+                <textarea id="fieldDescription" class="form-control" rows="4" placeholder="製品の特徴・仕様を入力してください"></textarea>
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem;">
+                <a href="products.html" class="btn btn--ghost">キャンセル</a>
+                <button type="submit" class="btn btn--primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                  保存する
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- 画像プレビュー -->
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <p style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.75rem;">画像プレビュー</p>
+              <div class="img-preview" id="imgPreview">
+                <div class="img-preview-placeholder" id="imgPlaceholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+                  <span>画像なし</span>
+                </div>
+                <img id="imgPreviewEl" src="" alt="" style="display: none;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /edit-layout -->
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+
+</div><!-- /admin-layout -->
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin-ui.js"></script>
+<script>
+  AdminAuth.guard();
+  AdminData.init();
+  AdminUI.init();
+
+  var CODE_PATTERN = /^AP-[A-Z]+-\d+$/;
+  var isEditMode = false;
+  var editCode = null;
+
+  /* URLパラメータで編集モード判定 */
+  var params = new URLSearchParams(location.search);
+  var idParam = params.get('id');
+
+  if (idParam) {
+    var existing = AdminData.getProductByCode(idParam);
+    if (existing) {
+      isEditMode = true;
+      editCode = existing.code;
+      document.getElementById('pageTitle').textContent = '製品編集';
+      document.getElementById('formTitle').textContent = '製品を編集';
+
+      document.getElementById('fieldCode').value = existing.code;
+      document.getElementById('fieldCode').readOnly = true;
+      document.getElementById('fieldCode').style.background = 'var(--color-light)';
+      document.getElementById('fieldName').value = existing.name;
+      document.getElementById('fieldCategory').value = existing.category;
+      document.getElementById('fieldMaker').value = existing.maker;
+      document.getElementById('fieldImage').value = existing.image || '';
+      document.getElementById('fieldDescription').value = existing.description || '';
+
+      updatePreview(existing.image || '');
+    }
+  }
+
+  /* 画像プレビュー */
+  function updatePreview(filename) {
+    var imgEl = document.getElementById('imgPreviewEl');
+    var placeholder = document.getElementById('imgPlaceholder');
+    if (filename) {
+      imgEl.src = '../assets/images/' + filename;
+      imgEl.style.display = 'block';
+      placeholder.style.display = 'none';
+      imgEl.onerror = function () {
+        imgEl.style.display = 'none';
+        placeholder.style.display = 'flex';
+      };
+    } else {
+      imgEl.style.display = 'none';
+      placeholder.style.display = 'flex';
+    }
+  }
+
+  document.getElementById('fieldImage').addEventListener('input', function () {
+    updatePreview(this.value.trim());
+  });
+
+  /* バリデーション */
+  function validate() {
+    var valid = true;
+
+    var fields = [
+      { id: 'fieldCode',     msg: '型番を入力してください',     pattern: CODE_PATTERN, patternMsg: '形式: AP-[大文字]-[数字] （例: AP-BRK-001）' },
+      { id: 'fieldName',     msg: '製品名を入力してください' },
+      { id: 'fieldCategory', msg: 'カテゴリを選択してください' },
+      { id: 'fieldMaker',    msg: 'メーカーを入力してください' }
+    ];
+
+    fields.forEach(function (rule) {
+      var el = document.getElementById(rule.id);
+      var errEl = document.getElementById(rule.id + 'Error');
+      el.classList.remove('is-invalid');
+      errEl.textContent = '';
+      errEl.classList.remove('is-visible');
+
+      if (!el.value.trim()) {
+        el.classList.add('is-invalid');
+        errEl.textContent = rule.msg;
+        errEl.classList.add('is-visible');
+        valid = false;
+      } else if (rule.pattern && !rule.pattern.test(el.value.trim())) {
+        el.classList.add('is-invalid');
+        errEl.textContent = rule.patternMsg;
+        errEl.classList.add('is-visible');
+        valid = false;
+      }
+    });
+
+    return valid;
+  }
+
+  /* フォーム送信 */
+  document.getElementById('productForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (!validate()) {
+      var firstErr = document.querySelector('.is-invalid');
+      if (firstErr) { firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' }); firstErr.focus(); }
+      return;
+    }
+
+    var product = {
+      code:        document.getElementById('fieldCode').value.trim(),
+      name:        document.getElementById('fieldName').value.trim(),
+      category:    document.getElementById('fieldCategory').value,
+      maker:       document.getElementById('fieldMaker').value.trim(),
+      image:       document.getElementById('fieldImage').value.trim(),
+      description: document.getElementById('fieldDescription').value.trim()
+    };
+
+    AdminData.saveProduct(product);
+    AdminUI.showToast((isEditMode ? '製品を更新しました' : '製品を追加しました'), 'success');
+
+    setTimeout(function () {
+      location.href = 'products.html';
+    }, 1500);
+  });
+
+  /* リアルタイムエラー解除 */
+  ['fieldCode', 'fieldName', 'fieldCategory', 'fieldMaker'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', function () {
+      this.classList.remove('is-invalid');
+      var err = document.getElementById(id + 'Error');
+      if (err) err.classList.remove('is-visible');
+    });
+    document.getElementById(id).addEventListener('change', function () {
+      this.classList.remove('is-invalid');
+      var err = document.getElementById(id + 'Error');
+      if (err) err.classList.remove('is-visible');
+    });
+  });
+</script>
+</body>
+</html>

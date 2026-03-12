@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ダッシュボード | 管理画面</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="admin-sidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+      <span class="sidebar-brand__main">管理画面</span>
+      <span class="sidebar-brand__sub">エンジェルプランニング</span>
+    </a>
+    <nav class="sidebar-nav">
+      <span class="sidebar-nav__label">メニュー</span>
+      <a href="dashboard.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg>
+        ダッシュボード
+      </a>
+      <a href="products.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
+        製品管理
+      </a>
+      <a href="inquiries.html" class="sidebar-nav__link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+        お問い合わせ
+        <span class="sidebar-badge" id="inquiryBadge"></span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="sidebar-back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        サイトに戻る
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <span class="topbar-title">ダッシュボード</span>
+      <div class="topbar-user">
+        <span class="topbar-user__name">管理者</span>
+        <button class="topbar-logout" id="logoutBtn">ログアウト</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- 統計カード -->
+      <div class="stats-grid fade-in">
+        <div class="stat-card stat-card--accent">
+          <p class="stat-card__label">登録製品数</p>
+          <p class="stat-card__value" id="statProducts">—</p>
+          <p class="stat-card__sub">件</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">カテゴリ数</p>
+          <p class="stat-card__value" id="statCategories">—</p>
+          <p class="stat-card__sub">種類</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">問い合わせ件数</p>
+          <p class="stat-card__value" id="statInquiries">—</p>
+          <p class="stat-card__sub">件（累計）</p>
+        </div>
+        <div class="stat-card stat-card--danger">
+          <p class="stat-card__label">未対応</p>
+          <p class="stat-card__value" id="statOpen">—</p>
+          <p class="stat-card__sub">件</p>
+        </div>
+      </div>
+
+      <!-- メインコンテンツグリッド -->
+      <div class="dashboard-grid fade-in">
+
+        <!-- 最近のお問い合わせ -->
+        <div class="card">
+          <div class="dashboard-section-title">最近のお問い合わせ（最新5件）</div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>日付</th>
+                  <th>会社名</th>
+                  <th>件名</th>
+                  <th>状況</th>
+                </tr>
+              </thead>
+              <tbody id="recentInquiries"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- カテゴリ内訳 -->
+        <div class="card">
+          <div class="dashboard-section-title">製品カテゴリ別内訳</div>
+          <div class="category-breakdown" id="categoryBreakdown"></div>
+        </div>
+
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+
+</div><!-- /admin-layout -->
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin-ui.js"></script>
+<script>
+  AdminAuth.guard();
+  AdminData.init();
+  AdminUI.init();
+
+  /* 統計 */
+  var stats = AdminData.getStats();
+  document.getElementById('statProducts').textContent = stats.productCount;
+  document.getElementById('statCategories').textContent = stats.categoryCount;
+  document.getElementById('statInquiries').textContent = stats.inquiryCount;
+  document.getElementById('statOpen').textContent = stats.openCount;
+
+  /* 最近のお問い合わせ */
+  var inquiries = AdminData.getInquiries();
+  var sorted = inquiries.slice().sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  }).slice(0, 5);
+
+  var statusLabel = { open: '未対応', 'in-progress': '対応中', done: '完了' };
+  var statusClass = { open: 'status-badge--open', 'in-progress': 'status-badge--in-progress', done: 'status-badge--done' };
+
+  var tbody = document.getElementById('recentInquiries');
+  if (sorted.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">データがありません</td></tr>';
+  } else {
+    sorted.forEach(function (inq) {
+      var dt = new Date(inq.date);
+      var dateStr = dt.getFullYear() + '/' + ('0' + (dt.getMonth() + 1)).slice(-2) + '/' + ('0' + dt.getDate()).slice(-2);
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td class="td-code">' + dateStr + '</td>' +
+        '<td>' + escHtml(inq.company) + '</td>' +
+        '<td>' + escHtml(inq.subject) + '</td>' +
+        '<td><span class="status-badge ' + (statusClass[inq.status] || '') + '">' + (statusLabel[inq.status] || inq.status) + '</span></td>';
+      tbody.appendChild(tr);
+    });
+  }
+
+  /* カテゴリ内訳 */
+  var catNames = { brake: 'ブレーキ系', engine: 'エンジン系', suspension: '足廻り', electrical: '電装部品' };
+  var breakdown = document.getElementById('categoryBreakdown');
+  var cats = stats.categories;
+  var catKeys = Object.keys(cats);
+  if (catKeys.length === 0) {
+    breakdown.innerHTML = '<p class="empty-state">データがありません</p>';
+  } else {
+    catKeys.forEach(function (key) {
+      var item = document.createElement('div');
+      item.className = 'category-breakdown-item';
+      item.innerHTML =
+        '<span>' + (catNames[key] || key) + '</span>' +
+        '<span class="category-breakdown-item__count">' + cats[key] + ' 件</span>';
+      breakdown.appendChild(item);
+    });
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+</script>
+</body>
+</html>

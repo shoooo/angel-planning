@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>管理画面ログイン | エンジェルプランニング</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+
+    <div class="login-card__logo">
+      <span class="login-card__logo-main">株式会社エンジェルプランニング</span>
+      <span class="login-card__logo-sub">管理画面</span>
+    </div>
+
+    <h1 class="login-card__title">ログイン</h1>
+
+    <div class="login-demo-hint">
+      <strong>デモ用認証情報</strong>
+      ユーザー名: <strong>admin</strong> &nbsp;/&nbsp; パスワード: <strong>angel2024</strong>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="username">ユーザー名 <span class="required">必須</span></label>
+        <input type="text" id="username" class="form-control" autocomplete="username" placeholder="admin">
+        <p class="form-error" id="usernameError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="password">パスワード <span class="required">必須</span></label>
+        <input type="password" id="password" class="form-control" autocomplete="current-password" placeholder="••••••••">
+        <p class="form-error" id="passwordError"></p>
+      </div>
+
+      <p class="form-error" id="loginError" style="margin-bottom: 0.75rem; font-size: 0.85rem;"></p>
+
+      <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center; padding: 0.75rem;">
+        ログイン
+      </button>
+    </form>
+
+    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-gray);">
+      <a href="../index.html" style="color: var(--color-gray);">&#8592; サイトトップに戻る</a>
+    </p>
+
+  </div>
+
+  <script src="js/admin-auth.js"></script>
+  <script>
+    // すでにログイン済みならダッシュボードへ
+    if (AdminAuth.isLoggedIn()) {
+      location.href = 'dashboard.html';
+    }
+
+    var loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var username = document.getElementById('username').value.trim();
+      var password = document.getElementById('password').value;
+      var loginError = document.getElementById('loginError');
+      var usernameError = document.getElementById('usernameError');
+      var passwordError = document.getElementById('passwordError');
+
+      // リセット
+      loginError.classList.remove('is-visible');
+      usernameError.classList.remove('is-visible');
+      passwordError.classList.remove('is-visible');
+      document.getElementById('username').classList.remove('is-invalid');
+      document.getElementById('password').classList.remove('is-invalid');
+
+      var valid = true;
+
+      if (!username) {
+        document.getElementById('username').classList.add('is-invalid');
+        usernameError.textContent = 'ユーザー名を入力してください';
+        usernameError.classList.add('is-visible');
+        valid = false;
+      }
+
+      if (!password) {
+        document.getElementById('password').classList.add('is-invalid');
+        passwordError.textContent = 'パスワードを入力してください';
+        passwordError.classList.add('is-visible');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      if (AdminAuth.login(username, password)) {
+        location.href = 'dashboard.html';
+      } else {
+        loginError.textContent = 'ユーザー名またはパスワードが正しくありません';
+        loginError.classList.add('is-visible');
+        document.getElementById('username').classList.add('is-invalid');
+        document.getElementById('password').classList.add('is-invalid');
+        document.getElementById('password').value = '';
+      }
+    });
+
+    // リアルタイムでエラー解除
+    ['username', 'password'].forEach(function (id) {
+      document.getElementById(id).addEventListener('input', function () {
+        this.classList.remove('is-invalid');
+        var err = document.getElementById(id + 'Error');
+        if (err) err.classList.remove('is-visible');
+        document.getElementById('loginError').classList.remove('is-visible');
+      });
+    });
+  </script>
+</body>
+</html>
